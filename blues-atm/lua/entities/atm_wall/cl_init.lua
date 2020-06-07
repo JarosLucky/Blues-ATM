@@ -116,6 +116,8 @@ end
 
 --Recalculates the position the cursor should be at on the screen
 --Also updates buttons to call onMouseEnter and onMouseExit
+local screenTopLeft = Vector(13.716227, 11.510023, 61.104160)
+local screenBottomRight = Vector(9.706230, -11.731017, 46.445992)
 function ENT:UpdateCursorPosition()
 	--To far
 	if self:GetPos():Distance(LocalPlayer():GetPos()) > 100 then return end
@@ -132,7 +134,6 @@ function ENT:UpdateCursorPosition()
 
 	local planeNormal = planeAngle:Forward() 
 
-
 	local ang = Angle(0, 0, 0)
 	ang:RotateAroundAxis(self:GetAngles():Right(), -15.3)
 	planeNormal:Rotate(ang)
@@ -144,9 +145,6 @@ function ENT:UpdateCursorPosition()
 	--render.DrawWireframeSphere(hitPos,1,25,25,Color(255,0,0, 50),false)
 
 	hitPos = self:WorldToLocal(hitPos)
-
-	local screenTopLeft = Vector(13.716227, 11.510023, 61.104160)
-	local screenBottomRight = Vector(9.706230, -11.731017, 46.445992)
 
 	local totalDifference = screenTopLeft - screenBottomRight
 
